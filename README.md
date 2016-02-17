@@ -1,4 +1,4 @@
-# FantoineCsrfRouteBundle
+# GenedysCsrfRouteBundle
 
 This [Symfony2](http://symfony.com) bundle provides route annotation and options to secure routes against [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery) and without using forms.
 
@@ -9,14 +9,14 @@ This [Symfony2](http://symfony.com) bundle provides route annotation and options
 
 Use [Composer](http://getcomposer.org) to install the bundle:
 
-`composer require fantoine/csrf-route-bundle '~1.0@dev'`
+`composer require genedys/csrf-route-bundle '~1.0@dev'`
 
 or add the following line in your `composer.json` file:
 
 ```json
     "require": {
         ...
-        "fantoine/csrf-route-bundle": "~1.0@dev",
+        "genedys/csrf-route-bundle": "~1.0@dev",
         ...
     }
 ```
@@ -29,7 +29,7 @@ Then, register the bundle in your application's kernel class:
     {
         $bundles = array(
             // ...
-            new Fantoine\CsrfRouteBundle\FantoineCsrfRouteBundle(),
+            new Genedys\CsrfRouteBundle\GenedysCsrfRouteBundle(),
             // ...
         );
     }
@@ -41,7 +41,7 @@ Then, register the bundle in your application's kernel class:
 Configuration reference :
 
 ```yaml
-fantoine_csrf_route:
+genedys_csrf_route:
     enabled: true
     field_name: _token
 ```
@@ -95,7 +95,7 @@ an additionnal annotation to the sensible actions:
 // src Acme\DemoBundle\Controller\DefaultController.php
 
 // ...
-use Fantoine\CsrfRouteBundle\Annotation\CsrfToken;
+use Genedys\CsrfRouteBundle\Annotation\CsrfToken;
 // ...
 
 class DefaultController {
@@ -124,12 +124,12 @@ This bundle overrides the default Symfony router.
 In case you use other bundles which does the same thing (for instance [JMSI18nRoutingBundle](https://github.com/schmittjoh/JMSI18nRoutingBundle)),
 the router integrated on this bundle works automatically as
 an adapter on previously configurated router.
-The only thing to take care is to register the FantoineCsrfRouterBundle after the bundle which overrides the router.
+The only thing to take care is to register the GenedysCsrfRouterBundle after the bundle which overrides the router.
 
 
 ## Credits
 
-Created by [Fabien Antoine](http://www.fantoine.com).
+Created by [Fabien Antoine](http://www.fantoine.com) for [Genedys](https://www.genedys.com).
 
 
 ## License
