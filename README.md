@@ -2,6 +2,7 @@
 
 This [Symfony2](http://symfony.com) bundle provides route annotation and options to secure routes against [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery) and without using forms.
 
+[![Latest Stable Version](https://poser.pugx.org/genedys/csrf-route-bundle/v/stable)](https://packagist.org/packages/sg/datatablesbundle) [![Total Downloads](https://poser.pugx.org/genedys/csrf-route-bundle/downloads)](https://packagist.org/packages/sg/datatablesbundle) [![Latest Unstable Version](https://poser.pugx.org/genedys/csrf-route-bundle/v/unstable)](https://packagist.org/packages/sg/datatablesbundle) [![License](https://poser.pugx.org/genedys/csrf-route-bundle/license)](https://packagist.org/packages/sg/datatablesbundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/981a1365-6411-4c50-86bf-6637cbba595c/mini.png)](https://insight.sensiolabs.com/projects/981a1365-6411-4c50-86bf-6637cbba595c)
 
 
