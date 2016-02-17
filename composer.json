@@ -1,9 +1,9 @@
 {
-    "name": "fantoine/csrf-route-bundle",
+    "name": "genedys/csrf-route-bundle",
     "type": "symfony-bundle",
     "description": "Symfony2 bundle which provides a simple way to add CSRF tokens to routes",
     "keywords": ["route", "csrf", "security"],
-    "homepage": "https://github.com/fantoine/csrf-route-bundle",
+    "homepage": "https://github.com/Genedys/csrf-route-bundle",
     "license": "MIT",
     "authors": [
         {
@@ -22,8 +22,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     },
-    "target-dir": "Fantoine/CsrfRouteBundle"
+    "target-dir": "Genedys/CsrfRouteBundle"
 }
