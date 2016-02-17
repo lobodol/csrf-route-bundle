@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\Handler;
+namespace Genedys\CsrfRouteBundle\Handler;
 
 use Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface;
 

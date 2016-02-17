@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\DependencyInjection;
+namespace Genedys\CsrfRouteBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('fantoine_csrf_route');
+        $rootNode = $treeBuilder->root('genedys_csrf_route');
 
         $rootNode
             ->children()

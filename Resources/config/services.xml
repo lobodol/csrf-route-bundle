@@ -4,30 +4,30 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <!-- Managers -->
-        <parameter key="fantoine_csrf_route.manager.class">Fantoine\CsrfRouteBundle\Manager\CsrfTokenManager</parameter>
+        <parameter key="genedys_csrf_route.manager.class">Genedys\CsrfRouteBundle\Manager\CsrfTokenManager</parameter>
         
         <!-- Handlers -->
-        <parameter key="fantoine_csrf_route.handler.security.class">Fantoine\CsrfRouteBundle\Handler\SecurityTokenHandler</parameter>
-        <parameter key="fantoine_csrf_route.handler.form.class">Fantoine\CsrfRouteBundle\Handler\FormTokenHandler</parameter>
+        <parameter key="genedys_csrf_route.handler.security.class">Genedys\CsrfRouteBundle\Handler\SecurityTokenHandler</parameter>
+        <parameter key="genedys_csrf_route.handler.form.class">Genedys\CsrfRouteBundle\Handler\FormTokenHandler</parameter>
 
         <!-- Routing -->
-        <parameter key="fantoine_csrf_route.routing.router.class">Fantoine\CsrfRouteBundle\Routing\Router\CsrfRouter</parameter>
-        <parameter key="fantoine_csrf_route.routing.loader.class">Fantoine\CsrfRouteBundle\Routing\Loader\CsrfLoader</parameter>
+        <parameter key="genedys_csrf_route.routing.router.class">Genedys\CsrfRouteBundle\Routing\Router\CsrfRouter</parameter>
+        <parameter key="genedys_csrf_route.routing.loader.class">Genedys\CsrfRouteBundle\Routing\Loader\CsrfLoader</parameter>
     </parameters>
     <services>
         <!-- Managers -->
-        <service id="fantoine_csrf_route.manager" class="%fantoine_csrf_route.manager.class%">
-            <argument type="service" id="fantoine_csrf_route.handler" />
-            <argument>%fantoine_csrf_route.field_name%</argument>
+        <service id="genedys_csrf_route.manager" class="%genedys_csrf_route.manager.class%">
+            <argument type="service" id="genedys_csrf_route.handler" />
+            <argument>%genedys_csrf_route.field_name%</argument>
         </service>
 
         <!-- Routing -->
-        <service id="fantoine_csrf_route.routing.router" class="%fantoine_csrf_route.routing.router.class%" parent="router.default" public="false">
+        <service id="genedys_csrf_route.routing.router" class="%genedys_csrf_route.routing.router.class%" parent="router.default" public="false">
             <call method="setEnabled">
-                <argument>%fantoine_csrf_route.enabled%</argument>
+                <argument>%genedys_csrf_route.enabled%</argument>
             </call>
             <call method="setTokenManager">
-                <argument type="service" id="fantoine_csrf_route.manager" />
+                <argument type="service" id="genedys_csrf_route.manager" />
             </call>
         </service>
     </services>

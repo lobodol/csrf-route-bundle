@@ -1,8 +1,8 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\Routing\Router;
+namespace Genedys\CsrfRouteBundle\Routing\Router;
 
-use Fantoine\CsrfRouteBundle\Manager\CsrfTokenManager;
+use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

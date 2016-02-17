@@ -1,8 +1,8 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\EventListener;
+namespace Genedys\CsrfRouteBundle\EventListener;
 
-use Fantoine\CsrfRouteBundle\Manager\CsrfTokenManager;
+use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;

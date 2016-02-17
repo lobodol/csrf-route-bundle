@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\DependencyInjection\Compiler;
+namespace Genedys\CsrfRouteBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -22,20 +22,20 @@ class SetRouterPass implements CompilerPassInterface
         if ($container->hasAlias('router')) {
             // Set parent router
             $container
-                ->findDefinition('fantoine_csrf_route.routing.router')
+                ->findDefinition('genedys_csrf_route.routing.router')
                 ->addMethodCall('setParentRouter', [
                     new Reference((string) $container->getAlias('router'))
                 ])
             ;
             
             // Update alias
-            $container->setAlias('router', 'fantoine_csrf_route.routing.router');
+            $container->setAlias('router', 'genedys_csrf_route.routing.router');
         }
         
         // Replace Sensio Route annotation loader
         $container
             ->findDefinition('sensio_framework_extra.routing.loader.annot_class')
-            ->setClass('%fantoine_csrf_route.routing.loader.class%')
+            ->setClass('%genedys_csrf_route.routing.loader.class%')
         ;
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\Manager;
+namespace Genedys\CsrfRouteBundle\Manager;
 
-use Fantoine\CsrfRouteBundle\Handler\TokenHandlerInterface;
-use Fantoine\CsrfRouteBundle\Model\CsrfToken;
+use Genedys\CsrfRouteBundle\Handler\TokenHandlerInterface;
+use Genedys\CsrfRouteBundle\Model\CsrfToken;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 

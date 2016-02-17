@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\DependencyInjection;
+namespace Genedys\CsrfRouteBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -9,11 +9,11 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * Description of FantoineCsrfRouteExtension
+ * Description of GenedysCsrfRouteExtension
  *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
-class FantoineCsrfRouteExtension extends Extension
+class GenedysCsrfRouteExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -23,8 +23,8 @@ class FantoineCsrfRouteExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('fantoine_csrf_route.enabled', $config['enabled']);
-        $container->setParameter('fantoine_csrf_route.field_name', $config['field_name']);
+        $container->setParameter('genedys_csrf_route.enabled', $config['enabled']);
+        $container->setParameter('genedys_csrf_route.field_name', $config['field_name']);
 
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

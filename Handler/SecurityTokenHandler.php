@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\Handler;
+namespace Genedys\CsrfRouteBundle\Handler;
 
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;

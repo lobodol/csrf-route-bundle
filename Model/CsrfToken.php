@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\Model;
+namespace Genedys\CsrfRouteBundle\Model;
 
 /**
  * Description of CsrfToken

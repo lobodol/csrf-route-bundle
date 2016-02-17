@@ -1,8 +1,8 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\Routing\Loader;
+namespace Genedys\CsrfRouteBundle\Routing\Loader;
 
-use Fantoine\CsrfRouteBundle\Manager\CsrfTokenManager;
+use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
 use Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader;
 use Symfony\Component\Routing\Route;
 
@@ -27,8 +27,8 @@ class CsrfLoader extends AnnotatedRouteControllerLoader
     {
         parent::configureRoute($route, $class, $method, $annot);
         
-        /** @var \Fantoine\CsrfRouteBundle\Annotation\CsrfToken */
-        $annotation = $this->reader->getMethodAnnotation($method, '\\Fantoine\\CsrfRouteBundle\\Annotation\\CsrfToken');
+        /** @var \Genedys\CsrfRouteBundle\Annotation\CsrfToken */
+        $annotation = $this->reader->getMethodAnnotation($method, '\\Genedys\\CsrfRouteBundle\\Annotation\\CsrfToken');
         if (null !== $annotation) {
             // Store the CsrfToken options on Route options
             $route->setOption(CsrfTokenManager::OPTION_NAME, $annotation->toOption());

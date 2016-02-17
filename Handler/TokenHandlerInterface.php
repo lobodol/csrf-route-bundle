@@ -1,6 +1,6 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\Handler;
+namespace Genedys\CsrfRouteBundle\Handler;
 
 /**
  * Description of TokenHandlerInterface

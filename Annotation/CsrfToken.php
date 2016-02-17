@@ -1,8 +1,8 @@
 <?php
 
-namespace Fantoine\CsrfRouteBundle\Annotation;
+namespace Genedys\CsrfRouteBundle\Annotation;
 
-use Fantoine\CsrfRouteBundle\Model\CsrfToken as BaseCsrfToken;
+use Genedys\CsrfRouteBundle\Model\CsrfToken as BaseCsrfToken;
 
 /**
  * Description of CsrfToken
