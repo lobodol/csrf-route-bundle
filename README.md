@@ -10,14 +10,14 @@ This [Symfony2](http://symfony.com) bundle provides route annotation and options
 
 Use [Composer](http://getcomposer.org) to install the bundle:
 
-`composer require genedys/csrf-route-bundle '~1.0@dev'`
+`composer require genedys/csrf-route-bundle '~2.0'`
 
 or add the following line in your `composer.json` file:
 
 ```json
     "require": {
         ...
-        "genedys/csrf-route-bundle": "~1.0@dev",
+        "genedys/csrf-route-bundle": "~2.0",
         ...
     }
 ```
