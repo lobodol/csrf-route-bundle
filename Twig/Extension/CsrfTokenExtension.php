@@ -65,6 +65,6 @@ class CsrfTokenExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'ixoil_core.csrf_token';
+        return 'genedys_csrf.csrf_token';
     }
 }
