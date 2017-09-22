@@ -50,8 +50,8 @@ class CsrfToken extends BaseCsrfToken
         if (null !== $this->getIntention()) {
             $options['intention'] = $this->getIntention();
         }
-        if (null !== $this->getMethods(true)) {
-            $options['methods'] = $this->getMethods(true);
+        if (null !== $this->getMethods()) {
+            $options['methods'] = $this->getMethods();
         }
 
         return (count($options) > 0 ? $options : true);
