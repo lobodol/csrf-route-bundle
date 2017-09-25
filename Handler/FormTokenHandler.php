@@ -5,8 +5,6 @@ namespace Genedys\CsrfRouteBundle\Handler;
 use Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface;
 
 /**
- * Description of FormTokenHandler
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class FormTokenHandler implements TokenHandlerInterface

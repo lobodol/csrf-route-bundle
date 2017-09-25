@@ -6,8 +6,6 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 /**
- * Description of SecurityTokenHandler
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class SecurityTokenHandler implements TokenHandlerInterface

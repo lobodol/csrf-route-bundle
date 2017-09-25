@@ -9,8 +9,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RequestContext;
 
 /**
- * Description of CsrfRouter
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class CsrfRouter extends Router
@@ -24,7 +22,7 @@ class CsrfRouter extends Router
      * @var Router
      */
     protected $parent;
-    
+
     /**
      * @var CsrfTokenManager
      */
@@ -37,7 +35,7 @@ class CsrfRouter extends Router
     {
         $this->enabled = $enabled;
     }
-    
+
     /**
      * @param Router $router
      */
@@ -45,7 +43,7 @@ class CsrfRouter extends Router
     {
         $this->parent = $router;
     }
-    
+
     /**
      * @param CsrfTokenManager $tokenManager
      */
@@ -53,7 +51,7 @@ class CsrfRouter extends Router
     {
         $this->tokenManager = $tokenManager;
     }
-    
+
     /**
      * @param RequestContext $context
      */
@@ -62,10 +60,10 @@ class CsrfRouter extends Router
         if (null !== $this->parent) {
             $this->parent->setContext($context);
         }
-        
+
         parent::setContext($context);
     }
-    
+
     /**
      * @return \Symfony\Component\Routing\RouteCollection
      */
@@ -74,10 +72,10 @@ class CsrfRouter extends Router
         if (null !== $this->parent) {
             return $this->parent->getRouteCollection();
         }
-        
+
         return parent::getRouteCollection();
     }
-    
+
     /**
      * @param string $pathinfo
      * @return boolean
@@ -87,7 +85,7 @@ class CsrfRouter extends Router
         if (null !== $this->parent) {
             return $this->parent->match($pathinfo);
         }
-        
+
         return parent::match($pathinfo);
     }
 
@@ -109,18 +107,18 @@ class CsrfRouter extends Router
                 );
             }
         }
-        
+
         if (null !== $this->parent) {
             return $this->parent->generate(
                 $name, $parameters, $referenceType
             );
         }
-        
+
         return parent::generate(
             $name, $parameters, $referenceType
         );
     }
-    
+
     /**
      * @param Request $request
      * @return array
@@ -130,7 +128,7 @@ class CsrfRouter extends Router
         if (null !== $this->parent) {
             return $this->parent->matchRequest($request);
         }
-        
+
         return parent::matchRequest($request);
     }
 }

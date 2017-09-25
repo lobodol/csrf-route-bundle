@@ -5,9 +5,6 @@ namespace Genedys\CsrfRouteBundle\Twig\Extension;
 use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
 use Genedys\CsrfRouteBundle\Routing\Router\CsrfRouter;
 
-/**
- * Class CsrfTokenExtension
- */
 class CsrfTokenExtension extends \Twig_Extension
 {
     /**
@@ -21,8 +18,6 @@ class CsrfTokenExtension extends \Twig_Extension
     protected $csrfTokenManager;
 
     /**
-     * CsrfTokenExtension constructor.
-     *
      * @param CsrfRouter       $csrfRouter
      * @param CsrfTokenManager $csrfTokenManager
      */

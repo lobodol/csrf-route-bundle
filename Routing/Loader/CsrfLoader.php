@@ -7,8 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader;
 use Symfony\Component\Routing\Route;
 
 /**
- * Description of CsrfLoader
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class CsrfLoader extends AnnotatedRouteControllerLoader

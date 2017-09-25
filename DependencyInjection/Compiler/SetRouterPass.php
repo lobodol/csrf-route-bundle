@@ -7,8 +7,6 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Description of SetRouterPass
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class SetRouterPass implements CompilerPassInterface
@@ -27,11 +25,11 @@ class SetRouterPass implements CompilerPassInterface
                     new Reference((string) $container->getAlias('router'))
                 ])
             ;
-            
+
             // Update alias
             $container->setAlias('router', 'genedys_csrf_route.routing.router');
         }
-        
+
         // Replace Sensio Route annotation loader
         $container
             ->findDefinition('sensio_framework_extra.routing.loader.annot_class')

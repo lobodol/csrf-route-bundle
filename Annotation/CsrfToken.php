@@ -5,8 +5,6 @@ namespace Genedys\CsrfRouteBundle\Annotation;
 use Genedys\CsrfRouteBundle\Model\CsrfToken as BaseCsrfToken;
 
 /**
- * Description of CsrfToken
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  *
  * @Annotation

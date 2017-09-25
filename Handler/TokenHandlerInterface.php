@@ -3,8 +3,6 @@
 namespace Genedys\CsrfRouteBundle\Handler;
 
 /**
- * Description of TokenHandlerInterface
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 interface TokenHandlerInterface

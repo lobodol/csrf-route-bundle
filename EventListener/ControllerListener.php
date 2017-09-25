@@ -10,8 +10,6 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Description of ControllerListener
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class ControllerListener implements EventSubscriberInterface

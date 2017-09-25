@@ -3,8 +3,6 @@
 namespace Genedys\CsrfRouteBundle\Model;
 
 /**
- * Description of CsrfToken
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class CsrfToken

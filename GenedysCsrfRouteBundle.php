@@ -7,8 +7,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Description of GenedysCsrfRouteBundle
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class GenedysCsrfRouteBundle extends Bundle

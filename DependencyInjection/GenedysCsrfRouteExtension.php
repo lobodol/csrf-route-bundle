@@ -9,8 +9,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * Description of GenedysCsrfRouteExtension
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class GenedysCsrfRouteExtension extends Extension

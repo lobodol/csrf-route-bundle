@@ -10,8 +10,6 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
- * Description of CsrfTokenManager
- *
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
 class CsrfTokenManager
