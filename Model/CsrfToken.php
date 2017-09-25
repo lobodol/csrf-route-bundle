@@ -13,17 +13,17 @@ class CsrfToken
      * @var string
      */
     protected $token;
-    
+
     /**
      * @var string
      */
     protected $intention;
-    
+
     /**
      * @var array
      */
     protected $methods;
-    
+
     /**
      * @return string
      */
@@ -31,7 +31,7 @@ class CsrfToken
     {
         return $this->token;
     }
-    
+
     /**
      * @param string $token
      * @return CsrfToken
@@ -41,7 +41,7 @@ class CsrfToken
         $this->token = $token;
         return $this;
     }
-    
+
     /**
      * @return string
      */
@@ -49,7 +49,7 @@ class CsrfToken
     {
         return $this->intention;
     }
-    
+
     /**
      * @param string $intention
      * @return CsrfToken
@@ -59,7 +59,7 @@ class CsrfToken
         $this->intention = $intention;
         return $this;
     }
-    
+
     /**
      * @param boolean $raw
      * @return array
@@ -74,7 +74,7 @@ class CsrfToken
             )
         );
     }
-    
+
     /**
      * @param string|array $methods
      * @return CsrfToken

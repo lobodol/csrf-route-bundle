@@ -8,7 +8,7 @@ use Genedys\CsrfRouteBundle\Model\CsrfToken as BaseCsrfToken;
  * Description of CsrfToken
  *
  * @author Fabien Antoine <fabien@fantoine.fr>
- * 
+ *
  * @Annotation
  * @Target("METHOD")
  * @Attributes({
@@ -29,21 +29,21 @@ class CsrfToken extends BaseCsrfToken
             'intention' => null,
             'methods'   => null,
         ], $values);
-        
+
         $this
             ->setToken($options['token'])
             ->setIntention($options['intention'])
             ->setMethods($options['methods'])
         ;
     }
-    
+
     /**
      * @return array|boolean
      */
     public function toOption()
     {
         $options = [];
-        
+
         if (null !== $this->getToken()) {
             $options['token'] = $this->getToken();
         }
@@ -53,7 +53,7 @@ class CsrfToken extends BaseCsrfToken
         if (null !== $this->getMethods(true)) {
             $options['methods'] = $this->getMethods(true);
         }
-        
+
         return (count($options) > 0 ? $options : true);
     }
 }

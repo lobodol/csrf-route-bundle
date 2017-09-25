@@ -12,10 +12,10 @@ use Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfProviderInterface;
 class FormTokenHandler implements TokenHandlerInterface
 {
     /**
-     * @var CsrfProviderInterface 
+     * @var CsrfProviderInterface
      */
     protected $csrfProvider;
-    
+
     /**
      * @param CsrfProviderInterface $csrfProvider
      */
@@ -23,7 +23,7 @@ class FormTokenHandler implements TokenHandlerInterface
     {
         $this->csrfProvider = $csrfProvider;
     }
-    
+
     /**
      * @param string $intention
      * @return string
@@ -32,7 +32,7 @@ class FormTokenHandler implements TokenHandlerInterface
     {
         return $this->csrfProvider->generateCsrfToken($intention);
     }
-    
+
     /**
      * @param string $intention
      * @param string $token

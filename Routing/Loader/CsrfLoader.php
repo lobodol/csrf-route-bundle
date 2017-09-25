@@ -26,7 +26,7 @@ class CsrfLoader extends AnnotatedRouteControllerLoader
     protected function configureRoute(Route $route, \ReflectionClass $class, \ReflectionMethod $method, $annot)
     {
         parent::configureRoute($route, $class, $method, $annot);
-        
+
         /** @var \Genedys\CsrfRouteBundle\Annotation\CsrfToken */
         $annotation = $this->reader->getMethodAnnotation($method, '\\Genedys\\CsrfRouteBundle\\Annotation\\CsrfToken');
         if (null !== $annotation) {

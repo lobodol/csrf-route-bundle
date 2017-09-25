@@ -14,7 +14,7 @@ interface TokenHandlerInterface
      * @return string
      */
     public function getToken($intention);
-    
+
     /**
      * @param string $intention
      * @param string $token

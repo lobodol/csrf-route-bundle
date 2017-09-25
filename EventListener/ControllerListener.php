@@ -25,27 +25,27 @@ class ControllerListener implements EventSubscriberInterface
             KernelEvents::CONTROLLER => 'onKernelController',
         ];
     }
-    
+
     /**
-     * @var RouterInterface 
+     * @var RouterInterface
      */
     protected $router;
-    
+
     /**
      * @var CsrfTokenManager
      */
     protected $tokenManager;
-    
+
     /**
      * @var string
      */
     protected $cacheDirectory;
-    
+
     /**
      * @var Filesystem
      */
     protected $filesystem;
-    
+
     /**
      * @param RouterInterface $router
      * @param CsrfTokenManager $tokenManager
@@ -63,32 +63,32 @@ class ControllerListener implements EventSubscriberInterface
         $this->filesystem     = $filesystem;
         $this->cacheDirectory = $cacheDirectory;
     }
-    
+
     /**
      * @param FilterControllerEvent $event
      */
     public function onKernelController(FilterControllerEvent $event)
     {
         $request = $event->getRequest();
-        
+
         // Get route name
         $routeName = $request->attributes->get('_route');
         if (!$routeName) {
             return;
         }
-        
+
         // Get route
         $route = $this->getRoute($routeName);
         if (null === $route) {
             return;
         }
-        
+
         // Validate route
         $this->tokenManager->validateRoute(
             $route, $routeName, $request
         );
     }
-    
+
     /**
      * @param string $routeName
      * @return \Symfony\Component\Routing\Route|null
@@ -97,9 +97,9 @@ class ControllerListener implements EventSubscriberInterface
     {
         // Create cache directory
         $this->filesystem->mkdir($this->cacheDirectory);
-        
+
         $route = null;
-        
+
         try {
             $file = sprintf('%s/%s.data', $this->cacheDirectory, md5($routeName));
             if (!$this->filesystem->exists($file)) {
@@ -112,7 +112,7 @@ class ControllerListener implements EventSubscriberInterface
                 $route = unserialize(file_get_contents($file));
             }
         } catch (\Exception $e) {}
-        
+
         return $route;
     }
 }

@@ -13,10 +13,10 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 class SecurityTokenHandler implements TokenHandlerInterface
 {
     /**
-     * @var CsrfTokenManagerInterface 
+     * @var CsrfTokenManagerInterface
      */
     protected $tokenManager;
-    
+
     /**
      * @param CsrfTokenManagerInterface $tokenManager
      */
@@ -24,7 +24,7 @@ class SecurityTokenHandler implements TokenHandlerInterface
     {
         $this->tokenManager = $tokenManager;
     }
-    
+
     /**
      * @param string $intention
      * @return string
@@ -36,7 +36,7 @@ class SecurityTokenHandler implements TokenHandlerInterface
             ->getValue()
         ;
     }
-    
+
     /**
      * @param string $intention
      * @param string $token
