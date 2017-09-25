@@ -23,11 +23,6 @@ class CsrfRouter implements CsrfRouterInterface
     protected $enabled;
 
     /**
-     * @var Router
-     */
-    protected $parent;
-
-    /**
      * @var CsrfTokenManager
      */
     protected $tokenManager;
@@ -38,35 +33,21 @@ class CsrfRouter implements CsrfRouterInterface
     protected $tokenHandler;
 
     /**
-     * @param bool $enabled
+     * @var Router
      */
-    public function setEnabled($enabled)
+    protected $parent;
+
+    public function __construct(
+        $enabled,
+        CsrfTokenManager $tokenManager,
+        TokenHandlerInterface $tokenHandler,
+        Router $parent
+    )
     {
         $this->enabled = $enabled;
-    }
-
-    /**
-     * @param Router $router
-     */
-    public function setParentRouter(Router $router)
-    {
-        $this->parent = $router;
-    }
-
-    /**
-     * @param CsrfTokenManager $tokenManager
-     */
-    public function setTokenManager(CsrfTokenManager $tokenManager)
-    {
         $this->tokenManager = $tokenManager;
-    }
-
-    /**
-     * @param TokenHandlerInterface $tokenHandler
-     */
-    public function setTokenHandler(TokenHandlerInterface $tokenHandler)
-    {
         $this->tokenHandler = $tokenHandler;
+        $this->parent = $parent;
     }
 
     /**

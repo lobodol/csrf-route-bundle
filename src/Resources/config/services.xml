@@ -21,16 +21,10 @@
         </service>
 
         <!-- Routing -->
-        <service id="genedys_csrf_route.routing.router" class="%genedys_csrf_route.routing.router.class%" parent="router.default" public="false">
-            <call method="setEnabled">
-                <argument>%genedys_csrf_route.enabled%</argument>
-            </call>
-            <call method="setTokenManager">
-                <argument type="service" id="genedys_csrf_route.manager" />
-            </call>
-            <call method="setTokenHandler">
-                <argument type="service" id="genedys_csrf_route.handler" />
-            </call>
+        <service id="genedys_csrf_route.routing.router" class="%genedys_csrf_route.routing.router.class%" public="false">
+            <argument>%genedys_csrf_route.enabled%</argument>
+            <argument type="service" id="genedys_csrf_route.manager" />
+            <argument type="service" id="genedys_csrf_route.handler" />
         </service>
 
         <!-- Handlers -->

@@ -21,9 +21,7 @@ class SetRouterPass implements CompilerPassInterface
             // Set parent router
             $container
                 ->findDefinition('genedys_csrf_route.routing.router')
-                ->addMethodCall('setParentRouter', [
-                    new Reference((string) $container->getAlias('router'))
-                ])
+                ->addArgument(new Reference((string) $container->getAlias('router')));
             ;
 
             // Update alias
