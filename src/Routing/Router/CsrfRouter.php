@@ -14,6 +14,7 @@ use Symfony\Component\Routing\RouteCollection;
 
 /**
  * @author Fabien Antoine <fabien@fantoine.fr>
+ * @author Jáchym Toušek <enumag@gmail.com>
  */
 class CsrfRouter implements CsrfRouterInterface
 {

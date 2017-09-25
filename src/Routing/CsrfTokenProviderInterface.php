@@ -4,6 +4,9 @@ namespace Genedys\CsrfRouteBundle\Routing;
 
 use Genedys\CsrfRouteBundle\Model\CsrfToken;
 
+/**
+ * @author Jáchym Toušek <enumag@gmail.com>
+ */
 interface CsrfTokenProviderInterface
 {
     /**
