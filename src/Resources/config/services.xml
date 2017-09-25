@@ -5,10 +5,9 @@
     <parameters>
         <!-- Managers -->
         <parameter key="genedys_csrf_route.manager.class">Genedys\CsrfRouteBundle\Manager\CsrfTokenManager</parameter>
-        
+
         <!-- Handlers -->
         <parameter key="genedys_csrf_route.handler.security.class">Genedys\CsrfRouteBundle\Handler\SecurityTokenHandler</parameter>
-        <parameter key="genedys_csrf_route.handler.form.class">Genedys\CsrfRouteBundle\Handler\FormTokenHandler</parameter>
 
         <!-- Routing -->
         <parameter key="genedys_csrf_route.routing.router.class">Genedys\CsrfRouteBundle\Routing\Router\CsrfRouter</parameter>
@@ -29,6 +28,11 @@
             <call method="setTokenManager">
                 <argument type="service" id="genedys_csrf_route.manager" />
             </call>
+        </service>
+
+        <!-- Handlers -->
+        <service id="genedys_csrf_route.handler" class="%genedys_csrf_route.handler.security.class%">
+            <argument type="service" id="security.csrf.token_manager" />
         </service>
     </services>
 </container>

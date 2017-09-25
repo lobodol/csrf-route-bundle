@@ -29,7 +29,6 @@ class GenedysCsrfRouteExtension extends Extension
 
         $loader->load('services.xml');
         $loader->load('twig.xml');
-        $loader->load(version_compare(Kernel::VERSION, '2.4.0', '<') ? 'services_23.xml' : 'services_24.xml');
 
         // Load events only if it's enabled
         if ($config['enabled']) {
