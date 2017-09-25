@@ -3,6 +3,8 @@
 namespace Genedys\CsrfRouteBundle\Routing\Router;
 
 use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
+use Genedys\CsrfRouteBundle\Model\CsrfToken;
+use Genedys\CsrfRouteBundle\Routing\CsrfRouterInterface;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -11,7 +13,7 @@ use Symfony\Component\Routing\RequestContext;
 /**
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
-class CsrfRouter extends Router
+class CsrfRouter extends Router implements CsrfRouterInterface
 {
     /**
      * @var bool
@@ -99,12 +101,10 @@ class CsrfRouter extends Router
     {
         // Add Csrf token if required
         if ($this->enabled) {
-            $route = $this->getRouteCollection()->get($name);
-            if (null !== $route) {
-                // Apply token if required
-                $this->tokenManager->updateRoute(
-                    $route, $name, $parameters
-                );
+            $token = $this->getCsrfToken($name);
+
+            if ($token) {
+                $parameters[$token->getToken()] = $this->tokenManager->getTokenValue($name, $token);
             }
         }
 
@@ -130,5 +130,14 @@ class CsrfRouter extends Router
         }
 
         return parent::matchRequest($request);
+    }
+
+    /**
+     * @param string $name
+     * @return CsrfToken|null
+     */
+    public function getCsrfToken($name)
+    {
+        return $this->tokenManager->getTokenFromRoute($this->getRouteCollection()->get($name));
     }
 }

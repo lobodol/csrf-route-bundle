@@ -3,6 +3,7 @@
 namespace Genedys\CsrfRouteBundle\Twig\Extension;
 
 use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
+use Genedys\CsrfRouteBundle\Routing\CsrfRouterInterface;
 use Genedys\CsrfRouteBundle\Routing\Router\CsrfRouter;
 
 class CsrfTokenExtension extends \Twig_Extension
@@ -18,10 +19,10 @@ class CsrfTokenExtension extends \Twig_Extension
     protected $csrfTokenManager;
 
     /**
-     * @param CsrfRouter       $csrfRouter
-     * @param CsrfTokenManager $csrfTokenManager
+     * @param CsrfRouterInterface $csrfRouter
+     * @param CsrfTokenManager    $csrfTokenManager
      */
-    public function __construct(CsrfRouter $csrfRouter, CsrfTokenManager $csrfTokenManager)
+    public function __construct(CsrfRouterInterface $csrfRouter, CsrfTokenManager $csrfTokenManager)
     {
         $this->csrfRouter       = $csrfRouter;
         $this->csrfTokenManager = $csrfTokenManager;
@@ -39,20 +40,14 @@ class CsrfTokenExtension extends \Twig_Extension
 
     /**
      * @param string $routeName
-     * @param array   $parameters
      *
      * @return string
      */
-    public function getToken($routeName, array $parameters = [])
+    public function getToken($routeName)
     {
-        $route = $this->csrfRouter->getRouteCollection()->get($routeName);
-        if (null !== $route) {
-            $this->csrfTokenManager->updateRoute($route, $routeName, $parameters);
+        $token = $this->csrfRouter->getCsrfToken($routeName);
 
-            return (isset($parameters['_token']) && !empty($parameters['_token'])) ? $parameters['_token'] : '';
-        }
-
-        return '';
+        return $token ? $this->csrfTokenManager->getTokenValue($routeName, $token) : '';
     }
 
     /**

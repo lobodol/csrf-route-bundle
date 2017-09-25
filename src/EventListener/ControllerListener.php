@@ -2,12 +2,13 @@
 
 namespace Genedys\CsrfRouteBundle\EventListener;
 
-use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
+use Genedys\CsrfRouteBundle\Handler\TokenHandlerInterface;
+use Genedys\CsrfRouteBundle\Routing\CsrfRouterInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\Routing\RouterInterface;
 
 /**
  * @author Fabien Antoine <fabien@fantoine.fr>
@@ -25,41 +26,25 @@ class ControllerListener implements EventSubscriberInterface
     }
 
     /**
-     * @var RouterInterface
+     * @var CsrfRouterInterface
      */
     protected $router;
 
     /**
-     * @var CsrfTokenManager
+     * @var TokenHandlerInterface
      */
-    protected $tokenManager;
+    protected $tokenHandler;
 
     /**
-     * @var string
-     */
-    protected $cacheDirectory;
-
-    /**
-     * @var Filesystem
-     */
-    protected $filesystem;
-
-    /**
-     * @param RouterInterface $router
-     * @param CsrfTokenManager $tokenManager
-     * @param Filesystem $filesystem
-     * @param string $cacheDirectory
+     * @param CsrfRouterInterface   $router
+     * @param TokenHandlerInterface $tokenHandler
      */
     public function __construct(
-        RouterInterface $router,
-        CsrfTokenManager $tokenManager,
-        Filesystem $filesystem,
-        $cacheDirectory)
-    {
+        CsrfRouterInterface $router,
+        TokenHandlerInterface $tokenHandler
+    ) {
         $this->router         = $router;
-        $this->tokenManager   = $tokenManager;
-        $this->filesystem     = $filesystem;
-        $this->cacheDirectory = $cacheDirectory;
+        $this->tokenHandler   = $tokenHandler;
     }
 
     /**
@@ -75,42 +60,45 @@ class ControllerListener implements EventSubscriberInterface
             return;
         }
 
-        // Get route
-        $route = $this->getRoute($routeName);
-        if (null === $route) {
-            return;
-        }
-
         // Validate route
-        $this->tokenManager->validateRoute(
-            $route, $routeName, $request
-        );
+        $this->validateRoute($routeName, $request);
     }
 
     /**
      * @param string $routeName
-     * @return \Symfony\Component\Routing\Route|null
+     * @param Request $request
      */
-    protected function getRoute($routeName)
+    public function validateRoute($routeName, Request $request)
     {
-        // Create cache directory
-        $this->filesystem->mkdir($this->cacheDirectory);
+        $token = $this->router->getCsrfToken($routeName);
+        if (!$token) {
+            return;
+        }
 
-        $route = null;
+        // Check HTTP method
+        if (!in_array($request->getMethod(), $token->getMethods())) {
+            return;
+        }
 
-        try {
-            $file = sprintf('%s/%s.data', $this->cacheDirectory, md5($routeName));
-            if (!$this->filesystem->exists($file)) {
-                // Get route
-                $route = $this->router->getRouteCollection()->get($routeName);
+        // Validate token
+        $query = $request->query;
+        if (!$query->has($token->getToken())) {
+            $this->accessDenied();
+        }
+        $valid = $this->tokenHandler->isTokenValid(
+            $token->getIntention() ?: $routeName,
+            $query->get($token->getToken())
+        );
+        if (!$valid) {
+            $this->accessDenied();
+        }
+    }
 
-                // Serialize it
-                file_put_contents($file, serialize($route));
-            } else {
-                $route = unserialize(file_get_contents($file));
-            }
-        } catch (\Exception $e) {}
-
-        return $route;
+    /**
+     * @throws AccessDeniedHttpException
+     */
+    protected function accessDenied()
+    {
+        throw new AccessDeniedHttpException('Invalid CSRF token');
     }
 }

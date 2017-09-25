@@ -4,10 +4,7 @@ namespace Genedys\CsrfRouteBundle\Manager;
 
 use Genedys\CsrfRouteBundle\Handler\TokenHandlerInterface;
 use Genedys\CsrfRouteBundle\Model\CsrfToken;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
-
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * @author Fabien Antoine <fabien@fantoine.fr>
@@ -94,61 +91,12 @@ class CsrfTokenManager
     }
 
     /**
-     * @param Route $route
-     * @param string $name
-     * @param array $parameters
+     * @param string    $routeName
+     * @param CsrfToken $csrfToken
+     * @return string
      */
-    public function updateRoute(Route $route, $name, array &$parameters)
+    public function getTokenValue($routeName, CsrfToken $csrfToken)
     {
-        // Get token
-        $token = $this->getTokenFromRoute($route);
-        if (null === $token) {
-            return;
-        }
-
-        // Add token
-        $parameters[$token->getToken()] = $this->tokenHandler
-            ->getToken($token->getIntention() ?: $name)
-        ;
-    }
-
-    /**
-     * @param Route $route
-     * @param string $routeName
-     * @param Request $request
-     */
-    public function validateRoute(Route $route, $routeName, Request $request)
-    {
-        // Find token
-        $token = $this->getTokenFromRoute($route);
-        if (null === $token) {
-            return;
-        }
-
-        // Check HTTP method
-        if (!in_array($request->getMethod(), $token->getMethods())) {
-            return;
-        }
-
-        // Validate token
-        $query = $request->query;
-        if (!$query->has($token->getToken())) {
-            $this->accessDenied();
-        }
-        $valid = $this->tokenHandler->isTokenValid(
-            $token->getIntention() ?: $routeName,
-            $query->get($token->getToken())
-        );
-        if (!$valid) {
-            $this->accessDenied();
-        }
-    }
-
-    /**
-     * @throws AccessDeniedHttpException
-     */
-    protected function accessDenied()
-    {
-        throw new AccessDeniedHttpException('Invalid CSRF token');
+        return $this->tokenHandler->getToken($csrfToken->getIntention() ?: $routeName);
     }
 }
