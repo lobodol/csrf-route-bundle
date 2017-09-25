@@ -2,6 +2,7 @@
 
 namespace Genedys\CsrfRouteBundle\Routing\Router;
 
+use Genedys\CsrfRouteBundle\Handler\TokenHandlerInterface;
 use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
 use Genedys\CsrfRouteBundle\Model\CsrfToken;
 use Genedys\CsrfRouteBundle\Routing\CsrfRouterInterface;
@@ -31,6 +32,11 @@ class CsrfRouter extends Router implements CsrfRouterInterface
     protected $tokenManager;
 
     /**
+     * @var TokenHandlerInterface
+     */
+    protected $tokenHandler;
+
+    /**
      * @param bool $enabled
      */
     public function setEnabled($enabled)
@@ -52,6 +58,14 @@ class CsrfRouter extends Router implements CsrfRouterInterface
     public function setTokenManager(CsrfTokenManager $tokenManager)
     {
         $this->tokenManager = $tokenManager;
+    }
+
+    /**
+     * @param TokenHandlerInterface $tokenHandler
+     */
+    public function setTokenHandler(TokenHandlerInterface $tokenHandler)
+    {
+        $this->tokenHandler = $tokenHandler;
     }
 
     /**
@@ -104,7 +118,7 @@ class CsrfRouter extends Router implements CsrfRouterInterface
             $token = $this->getCsrfToken($name);
 
             if ($token) {
-                $parameters[$token->getToken()] = $this->tokenManager->getTokenValue($name, $token);
+                $parameters[$token->getToken()] = $this->tokenHandler->getToken($token->getIntention() ?: $name);
             }
         }
 

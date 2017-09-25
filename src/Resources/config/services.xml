@@ -28,6 +28,9 @@
             <call method="setTokenManager">
                 <argument type="service" id="genedys_csrf_route.manager" />
             </call>
+            <call method="setTokenHandler">
+                <argument type="service" id="genedys_csrf_route.handler" />
+            </call>
         </service>
 
         <!-- Handlers -->

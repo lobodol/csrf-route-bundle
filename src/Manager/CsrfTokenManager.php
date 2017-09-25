@@ -2,7 +2,6 @@
 
 namespace Genedys\CsrfRouteBundle\Manager;
 
-use Genedys\CsrfRouteBundle\Handler\TokenHandlerInterface;
 use Genedys\CsrfRouteBundle\Model\CsrfToken;
 use Symfony\Component\Routing\Route;
 
@@ -17,23 +16,16 @@ class CsrfTokenManager
     const OPTION_NAME = 'csrf_token';
 
     /**
-     * @var TokenHandlerInterface
-     */
-    protected $tokenHandler;
-
-    /**
      * @var string
      */
     protected $fieldName;
 
     /**
-     * @param TokenHandlerInterface $tokenHandler
      * @param string $fieldName
      */
-    public function __construct(TokenHandlerInterface $tokenHandler, $fieldName)
+    public function __construct($fieldName)
     {
-        $this->tokenHandler = $tokenHandler;
-        $this->fieldName    = $fieldName;
+        $this->fieldName = $fieldName;
     }
 
     /**
@@ -88,15 +80,5 @@ class CsrfTokenManager
 
         // Get token
         return $this->getTokenFromOption($option);
-    }
-
-    /**
-     * @param string    $routeName
-     * @param CsrfToken $csrfToken
-     * @return string
-     */
-    public function getTokenValue($routeName, CsrfToken $csrfToken)
-    {
-        return $this->tokenHandler->getToken($csrfToken->getIntention() ?: $routeName);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Genedys\CsrfRouteBundle\Twig\Extension;
 
-use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
+use Genedys\CsrfRouteBundle\Handler\TokenHandlerInterface;
 use Genedys\CsrfRouteBundle\Routing\CsrfRouterInterface;
 use Genedys\CsrfRouteBundle\Routing\Router\CsrfRouter;
 
@@ -14,18 +14,18 @@ class CsrfTokenExtension extends \Twig_Extension
     protected $csrfRouter;
 
     /**
-     * @var CsrfTokenManager
+     * @var TokenHandlerInterface
      */
-    protected $csrfTokenManager;
+    protected $tokenHandler;
 
     /**
-     * @param CsrfRouterInterface $csrfRouter
-     * @param CsrfTokenManager    $csrfTokenManager
+     * @param CsrfRouterInterface   $csrfRouter
+     * @param TokenHandlerInterface $tokenHandler
      */
-    public function __construct(CsrfRouterInterface $csrfRouter, CsrfTokenManager $csrfTokenManager)
+    public function __construct(CsrfRouterInterface $csrfRouter, TokenHandlerInterface $tokenHandler)
     {
         $this->csrfRouter       = $csrfRouter;
-        $this->csrfTokenManager = $csrfTokenManager;
+        $this->tokenHandler = $tokenHandler;
     }
 
     /**
@@ -47,7 +47,7 @@ class CsrfTokenExtension extends \Twig_Extension
     {
         $token = $this->csrfRouter->getCsrfToken($routeName);
 
-        return $token ? $this->csrfTokenManager->getTokenValue($routeName, $token) : '';
+        return $token ? $this->tokenHandler->getToken($token->getIntention() ?: $routeName) : '';
     }
 
     /**
