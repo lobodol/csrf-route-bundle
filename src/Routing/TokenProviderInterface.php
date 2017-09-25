@@ -7,7 +7,7 @@ use Genedys\CsrfRouteBundle\Model\CsrfToken;
 /**
  * @author Jáchym Toušek <enumag@gmail.com>
  */
-interface CsrfTokenProviderInterface
+interface TokenProviderInterface
 {
     /**
      * Returns CSRF configuration for the given route.
