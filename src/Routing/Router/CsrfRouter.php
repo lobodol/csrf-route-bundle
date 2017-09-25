@@ -15,7 +15,7 @@ use Symfony\Component\Routing\RouteCollection;
 /**
  * @author Fabien Antoine <fabien@fantoine.fr>
  */
-class CsrfRouter extends Router implements CsrfRouterInterface
+class CsrfRouter implements CsrfRouterInterface
 {
     /**
      * @var bool
@@ -74,11 +74,15 @@ class CsrfRouter extends Router implements CsrfRouterInterface
      */
     public function setContext(RequestContext $context)
     {
-        if (null !== $this->parent) {
-            $this->parent->setContext($context);
-        }
+        $this->parent->setContext($context);
+    }
 
-        parent::setContext($context);
+    /**
+     * @return RequestContext
+     */
+    public function getContext()
+    {
+        return $this->parent->getContext();
     }
 
     /**
@@ -86,11 +90,7 @@ class CsrfRouter extends Router implements CsrfRouterInterface
      */
     public function getRouteCollection()
     {
-        if (null !== $this->parent) {
-            return $this->parent->getRouteCollection();
-        }
-
-        return parent::getRouteCollection();
+        return $this->parent->getRouteCollection();
     }
 
     /**
@@ -99,11 +99,7 @@ class CsrfRouter extends Router implements CsrfRouterInterface
      */
     public function match($pathinfo)
     {
-        if (null !== $this->parent) {
-            return $this->parent->match($pathinfo);
-        }
-
-        return parent::match($pathinfo);
+        return $this->parent->match($pathinfo);
     }
 
     /**
@@ -123,13 +119,7 @@ class CsrfRouter extends Router implements CsrfRouterInterface
             }
         }
 
-        if (null !== $this->parent) {
-            return $this->parent->generate(
-                $name, $parameters, $referenceType
-            );
-        }
-
-        return parent::generate(
+        return $this->parent->generate(
             $name, $parameters, $referenceType
         );
     }
@@ -140,11 +130,7 @@ class CsrfRouter extends Router implements CsrfRouterInterface
      */
     public function matchRequest(Request $request)
     {
-        if (null !== $this->parent) {
-            return $this->parent->matchRequest($request);
-        }
-
-        return parent::matchRequest($request);
+        return $this->parent->matchRequest($request);
     }
 
     /**
