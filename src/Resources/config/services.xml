@@ -14,16 +14,22 @@
         <parameter key="genedys_csrf_route.routing.loader.class">Genedys\CsrfRouteBundle\Routing\Loader\CsrfLoader</parameter>
     </parameters>
     <services>
-        <!-- Managers -->
-        <service id="genedys_csrf_route.manager" class="%genedys_csrf_route.manager.class%">
-            <argument>%genedys_csrf_route.field_name%</argument>
-        </service>
-
         <!-- Routing -->
         <service id="genedys_csrf_route.routing.router" class="%genedys_csrf_route.routing.router.class%" public="false">
-            <argument>%genedys_csrf_route.enabled%</argument>
-            <argument type="service" id="genedys_csrf_route.manager" />
+            <argument type="collection">
+                <argument key="enabled">%genedys_csrf_route.enabled%</argument>
+                <argument key="field_name">%genedys_csrf_route.field_name%</argument>
+                <argument key="cache_dir">%kernel.cache_dir%</argument>
+                <argument key="debug">%kernel.debug%</argument>
+                <argument key="token_provider_class">%genedys_csrf_route.token_provider_class%</argument>
+                <argument key="token_provider_base_class">%genedys_csrf_route.token_provider_base_class%</argument>
+                <argument key="token_provider_dumper_class">%genedys_csrf_route.token_provider_dumper_class%</argument>
+                <argument key="token_provider_cache_class">%genedys_csrf_route.token_provider_cache_class%</argument>
+            </argument>
             <argument type="service" id="genedys_csrf_route.handler" />
+            <call method="setConfigCacheFactory">
+                <argument type="service" id="config_cache_factory" />
+            </call>
         </service>
 
         <!-- Handlers -->

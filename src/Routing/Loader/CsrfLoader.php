@@ -2,7 +2,7 @@
 
 namespace Genedys\CsrfRouteBundle\Routing\Loader;
 
-use Genedys\CsrfRouteBundle\Manager\CsrfTokenManager;
+use Genedys\CsrfRouteBundle\Routing\TokenProviderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Routing\AnnotatedRouteControllerLoader;
 use Symfony\Component\Routing\Route;
 
@@ -29,7 +29,7 @@ class CsrfLoader extends AnnotatedRouteControllerLoader
         $annotation = $this->reader->getMethodAnnotation($method, '\\Genedys\\CsrfRouteBundle\\Annotation\\CsrfToken');
         if (null !== $annotation) {
             // Store the CsrfToken options on Route options
-            $route->setOption(CsrfTokenManager::OPTION_NAME, $annotation->toOption());
+            $route->setOption(TokenProviderInterface::OPTION_NAME, $annotation->toOption());
         }
     }
 }

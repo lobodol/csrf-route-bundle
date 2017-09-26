@@ -23,6 +23,10 @@ class GenedysCsrfRouteExtension extends Extension
 
         $container->setParameter('genedys_csrf_route.enabled', $config['enabled']);
         $container->setParameter('genedys_csrf_route.field_name', $config['field_name']);
+        $container->setParameter('genedys_csrf_route.token_provider_class', $config['token_provider_class']);
+        $container->setParameter('genedys_csrf_route.token_provider_base_class', $config['token_provider_base_class']);
+        $container->setParameter('genedys_csrf_route.token_provider_dumper_class', $config['token_provider_dumper_class']);
+        $container->setParameter('genedys_csrf_route.token_provider_cache_class', $config['token_provider_cache_class']);
 
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

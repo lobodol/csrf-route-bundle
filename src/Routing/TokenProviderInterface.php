@@ -10,6 +10,11 @@ use Genedys\CsrfRouteBundle\Model\CsrfToken;
 interface TokenProviderInterface
 {
     /**
+     * CsrfToken route option name
+     */
+    const OPTION_NAME = 'csrf_token';
+
+    /**
      * Returns CSRF configuration for the given route.
      *
      * @param string $name
