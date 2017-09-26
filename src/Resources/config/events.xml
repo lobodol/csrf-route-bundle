@@ -11,8 +11,6 @@
         <service id="genedys_csrf_route.listener.controller" class="%genedys_csrf_route.listener.controller.class%">
             <argument type="service" id="router" />
             <argument type="service" id="genedys_csrf_route.handler" />
-            <argument type="service" id="filesystem" />
-            <argument>%kernel.cache_dir%/genedys_csrf_route/routes</argument>
             <tag name="kernel.event_subscriber" />
         </service>
     </services>

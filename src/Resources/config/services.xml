@@ -16,7 +16,6 @@
     <services>
         <!-- Managers -->
         <service id="genedys_csrf_route.manager" class="%genedys_csrf_route.manager.class%">
-            <argument type="service" id="genedys_csrf_route.handler" />
             <argument>%genedys_csrf_route.field_name%</argument>
         </service>
 
