@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!-- Managers -->
+        <parameter key="genedys_csrf_route.manager.class">Genedys\CsrfRouteBundle\Manager\CsrfTokenManager</parameter>
+
+        <!-- Handlers -->
+        <parameter key="genedys_csrf_route.handler.security.class">Genedys\CsrfRouteBundle\Handler\SecurityTokenHandler</parameter>
+
+        <!-- Routing -->
+        <parameter key="genedys_csrf_route.routing.router.class">Genedys\CsrfRouteBundle\Routing\Router\CsrfRouter</parameter>
+        <parameter key="genedys_csrf_route.routing.loader.class">Genedys\CsrfRouteBundle\Routing\Loader\CsrfLoader</parameter>
+    </parameters>
+    <services>
+        <!-- Routing -->
+        <service id="genedys_csrf_route.routing.router" class="%genedys_csrf_route.routing.router.class%" public="false">
+            <argument type="collection">
+                <argument key="enabled">%genedys_csrf_route.enabled%</argument>
+                <argument key="field_name">%genedys_csrf_route.field_name%</argument>
+                <argument key="cache_dir">%kernel.cache_dir%</argument>
+                <argument key="debug">%kernel.debug%</argument>
+                <argument key="token_provider_class">%genedys_csrf_route.token_provider_class%</argument>
+                <argument key="token_provider_base_class">%genedys_csrf_route.token_provider_base_class%</argument>
+                <argument key="token_provider_dumper_class">%genedys_csrf_route.token_provider_dumper_class%</argument>
+                <argument key="token_provider_cache_class">%genedys_csrf_route.token_provider_cache_class%</argument>
+            </argument>
+            <argument type="service" id="genedys_csrf_route.handler" />
+            <call method="setConfigCacheFactory">
+                <argument type="service" id="config_cache_factory" />
+            </call>
+        </service>
+
+        <!-- Handlers -->
+        <service id="genedys_csrf_route.handler" class="%genedys_csrf_route.handler.security.class%">
+            <argument type="service" id="security.csrf.token_manager" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!-- Twig extensions -->
+        <parameter key="genedys_csrf.twig.extension.csrf_token.class">Genedys\CsrfRouteBundle\Twig\Extension\CsrfTokenExtension</parameter>
+    </parameters>
+
+    <services>
+        <!-- Twig extensions -->
+        <service id="genedys_csrf.twig.extension.csrf_token" class="%genedys_csrf.twig.extension.csrf_token.class%">
+            <argument type="service" id="genedys_csrf_route.routing.router" />
+            <argument type="service" id="genedys_csrf_route.handler" />
+            <tag name="twig.extension" />
+        </service>
+    </services>
+</container>
