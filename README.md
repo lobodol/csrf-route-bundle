@@ -1,6 +1,6 @@
 # GenedysCsrfRouteBundle
 
-This [Symfony2](http://symfony.com) bundle provides route annotation and options to secure routes against [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery) and without using forms.
+This [Symfony3](http://symfony.com) bundle provides route annotation and options to secure routes against [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery) and without using forms.
 
 [![Latest Stable Version](https://poser.pugx.org/genedys/csrf-route-bundle/v/stable)](https://packagist.org/packages/sg/datatablesbundle) [![Total Downloads](https://poser.pugx.org/genedys/csrf-route-bundle/downloads)](https://packagist.org/packages/sg/datatablesbundle) [![Latest Unstable Version](https://poser.pugx.org/genedys/csrf-route-bundle/v/unstable)](https://packagist.org/packages/sg/datatablesbundle) [![License](https://poser.pugx.org/genedys/csrf-route-bundle/license)](https://packagist.org/packages/sg/datatablesbundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/981a1365-6411-4c50-86bf-6637cbba595c/mini.png)](https://insight.sensiolabs.com/projects/981a1365-6411-4c50-86bf-6637cbba595c)
@@ -10,14 +10,14 @@ This [Symfony2](http://symfony.com) bundle provides route annotation and options
 
 Use [Composer](http://getcomposer.org) to install the bundle:
 
-`composer require genedys/csrf-route-bundle '~2.0'`
+`composer require genedys/csrf-route-bundle '~3.0'`
 
 or add the following line in your `composer.json` file:
 
 ```json
     "require": {
         ...
-        "genedys/csrf-route-bundle": "~2.0",
+        "genedys/csrf-route-bundle": "~3.0",
         ...
     }
 ```
@@ -70,7 +70,7 @@ The bundle checks controller calls and search for a `csrf_token` option. The ava
 homepage:
     ...
     options:
-        - csrf_token: 
+        - csrf_token:
             - token: '_token'
             - intention: null
             - methods: [GET]
