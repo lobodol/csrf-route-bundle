@@ -27,17 +27,6 @@ final class TokenProvider extends AbstractTokenProvider
     }
 
     /**
-     * Returns CSRF configuration for the given route.
-     *
-     * @param string $name
-     * @return CsrfToken|null
-     */
-    public function getCsrfToken($name)
-    {
-        return $this->getTokenFromRoute($this->routeCollection->get($name));
-    }
-
-    /**
      * @param Route $route
      * @return CsrfToken|null
      */
@@ -56,5 +45,16 @@ final class TokenProvider extends AbstractTokenProvider
 
         // Get token
         return $this->getTokenFromOption($option);
+    }
+
+    /**
+     * Returns CSRF configuration for the given route.
+     *
+     * @param string $name
+     * @return CsrfToken|null
+     */
+    public function getCsrfToken($name)
+    {
+        return $this->getTokenFromRoute($this->routeCollection->get($name));
     }
 }
