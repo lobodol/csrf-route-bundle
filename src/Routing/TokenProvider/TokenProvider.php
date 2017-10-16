@@ -10,7 +10,7 @@ use Symfony\Component\Routing\RouteCollection;
 /**
  * @author Jáchym Toušek <enumag@gmail.com>
  */
-class TokenProvider implements TokenProviderInterface
+abstract class TokenProvider implements TokenProviderInterface
 {
     /**
      * @var string
@@ -18,18 +18,11 @@ class TokenProvider implements TokenProviderInterface
     private $fieldName;
 
     /**
-     * @var RouteCollection
-     */
-    private $routeCollection;
-
-    /**
      * @param string $fieldName
-     * @param RouteCollection $routeCollection
      */
-    public function __construct($fieldName, RouteCollection $routeCollection)
+    public function __construct($fieldName)
     {
         $this->fieldName = $fieldName;
-        $this->routeCollection = $routeCollection;
     }
 
     /**
@@ -86,16 +79,5 @@ class TokenProvider implements TokenProviderInterface
 
         // Get token
         return $this->getTokenFromOption($option);
-    }
-
-    /**
-     * Returns CSRF configuration for the given route.
-     *
-     * @param string $name
-     * @return CsrfToken|null
-     */
-    public function getCsrfToken($name)
-    {
-        $this->getTokenFromRoute($this->routeCollection->get($name));
     }
 }
