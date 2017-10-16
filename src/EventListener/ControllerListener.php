@@ -85,10 +85,12 @@ class ControllerListener implements EventSubscriberInterface
         if (!$query->has($token->getToken())) {
             $this->accessDenied();
         }
+
         $valid = $this->tokenHandler->isTokenValid(
             $token->getIntention() ?: $routeName,
             $query->get($token->getToken())
         );
+
         if (!$valid) {
             $this->accessDenied();
         }
