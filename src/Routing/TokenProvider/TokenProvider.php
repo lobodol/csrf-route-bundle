@@ -34,7 +34,7 @@ final class TokenProvider extends AbstractTokenProvider
      */
     public function getCsrfToken($name)
     {
-        $this->getTokenFromRoute($this->routeCollection->get($name));
+        return $this->getTokenFromRoute($this->routeCollection->get($name));
     }
 
     /**
