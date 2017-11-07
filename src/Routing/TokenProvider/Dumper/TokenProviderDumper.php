@@ -45,6 +45,12 @@ class TokenProviderDumper implements TokenProviderDumperInterface
             'base_class' => 'Genedys\\CsrfRouteBundle\\Routing\\TokenProvider\\TokenProvider',
         ), $options);
 
+        if ($options['field_name'] === null) {
+            throw new \InvalidArgumentException('Option field_name is required.');
+        }
+
+        $fieldName = var_export($options['field_name'], true);
+
         return <<<EOF
 <?php
 
@@ -59,6 +65,8 @@ class {$options['class']} extends {$options['base_class']}
 
     public function __construct()
     {
+        parent::__construct({$fieldName});
+
         if (null === self::\$declaredRoutes) {
             self::\$declaredRoutes = {$this->generateDeclaredRoutes()};
         }
