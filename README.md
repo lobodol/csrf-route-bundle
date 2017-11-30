@@ -10,30 +10,27 @@ This [Symfony3](http://symfony.com) bundle provides route annotation and options
 
 Use [Composer](http://getcomposer.org) to install the bundle:
 
-`composer require genedys/csrf-route-bundle '~3.0'`
+`composer require genedys/csrf-route-bundle`
 
 or add the following line in your `composer.json` file:
 
 ```json
     "require": {
         ...
-        "genedys/csrf-route-bundle": "~3.0",
+        "genedys/csrf-route-bundle": "^3.0",
         ...
     }
 ```
 
-Then, register the bundle in your application's kernel class:
+Then, register the bundle in your application's bundles.php file:
 
 ```php
-    // app/AppKernel.php
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new Genedys\CsrfRouteBundle\GenedysCsrfRouteBundle(),
-            // ...
-        );
-    }
+    // bundles.php
+    return [
+        // ...
+        Genedys\CsrfRouteBundle\GenedysCsrfRouteBundle => ['all' => true],
+        // ...
+    ];
 ```
 
 
