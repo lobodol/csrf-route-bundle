@@ -28,10 +28,12 @@ class SetRouterPass implements CompilerPassInterface
             $container->setAlias('router', 'genedys_csrf_route.routing.router');
         }
 
-        // Replace Sensio Route annotation loader
-        $container
-            ->findDefinition('sensio_framework_extra.routing.loader.annot_class')
-            ->setClass('%genedys_csrf_route.routing.loader.class%')
-        ;
+        if ($container->has('sensio_framework_extra.routing.loader.annot_class')) {
+            // Replace Sensio Route annotation loader
+            $container
+                ->findDefinition('sensio_framework_extra.routing.loader.annot_class')
+                ->setClass('%genedys_csrf_route.routing.loader.class%')
+            ;
+        }
     }
 }
