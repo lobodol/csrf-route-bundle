@@ -15,7 +15,7 @@
     </parameters>
     <services>
         <!-- Routing -->
-        <service id="genedys_csrf_route.routing.router" class="%genedys_csrf_route.routing.router.class%" public="false">
+        <service id="genedys_csrf_route.routing.router" class="%genedys_csrf_route.routing.router.class%" public="true">
             <argument type="collection">
                 <argument key="enabled">%genedys_csrf_route.enabled%</argument>
                 <argument key="field_name">%genedys_csrf_route.field_name%</argument>
